@@ -1,6 +1,10 @@
 {
   "name": "hodaiasocket",
   "version": "1.0.0",
+  "engines": {
+    "node": "v12.19.0",
+    "npm": "6.14.8"
+  },
   "description": "",
   "main": "app.js",
   "scripts": {

@@ -1,7 +1,7 @@
 const express=require("express");
 const { Socket } = require("socket.io");
 const app= express();
-const port=8080 || "my-socket.herokuapp.com";
+const port=8080 || process.env.PORT;
 const http=require("http").createServer();
 
 const io=require("socket.io")(http);
@@ -12,5 +12,5 @@ io.on("connection",(socket)=>{
 });
 
 http.listen(port,()=>{
-    console.log("server is listening on localhost:" +port)
+    console.log("server is listening on " +port)
 });
