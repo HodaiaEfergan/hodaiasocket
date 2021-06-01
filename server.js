@@ -9,8 +9,16 @@ const io=require("socket.io")(http);
 io.on("connection",(socket)=>{
 
     socket.emit("welcome","welcome to the socket")
+    console.log("new client is connected!")
 });
+io.on("message", (data) => {
+    console.log(data);
+  });
 
+  // handle the event sent with socket.emit()
+  io.on("salutations", (elem1, elem2, elem3) => {
+    console.log(elem1, elem2, elem3);
+  });
 http.listen(port,()=>{
     console.log("server is listening on " +port)
 });
