@@ -25,7 +25,7 @@ io.on("connection", (socket) => {
 
   setInterval(() => {
     socket.emit("time", new Date().toTimeString())
-  }, 1000)
+  }, 10000000)
 
   socket.on("message", (message) => {
     console.log("message from cleint >>");
