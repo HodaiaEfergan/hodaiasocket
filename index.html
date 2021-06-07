@@ -1,29 +1,37 @@
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome to Soeckt.io Client</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <!-- <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Welcome to Soeckt.io Client</title>
+  <script src="/socket.io/socket.io.js"></script>
 
-    <script>
-      let socket = io();
-      let el;
+  <script>
+    let socket = io();
+    let el;
 
-      socket.on('welcome', (str) => {
-        el = document.getElementById('server-hello');
-        el.innerHTML = 'Server message: ' + str;
-      });
+    socket.on('welcome', (message) => {
+      el = document.getElementById('server-hello');
+      el.innerHTML = 'Server message: ' + message;
+    });
 
-      socket.on('time', (time) => {
-        el = document.getElementById('server-hello');
-        el.innerHTML = el.innerHTML + '<br/>Server time: ' + time;
-      });
+    socket.on('joined-chat', (message) => {
+      alert("Server send response: \n" + message)
+    });
 
-    </script>
+    function handleJoinChat() {
+      socket.emit("join-chat-request", "This is a request from the client")
+    }
+
+  </script>
 </head>
 <body>
-    <p id="server-hello"></p>
+  <button 
+    onclick="handleJoinChat()"
+    style="background-color: aquamarine;">
+    Join Chat
+  </button>
+  <p id="server-hello"></p>
 </body>
 </html>
