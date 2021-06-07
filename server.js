@@ -12,31 +12,32 @@ const io = require("socket.io")(http);
 
 io.on("connection", (socket) => {
 
-console.info("new client is connected!")
-socket.emit("welcome", "Welcome to the socket")
+  console.info("new client is connected!")
+  socket.emit("welcome", "Welcome to the socket")
 
-socket.on("join-chat-request", (message) => {
-  console.log("sending message to client >>");
-    console.log("joined-chat", "Welcome to the Chat");
-  console.log("message from cleint >>");
-  console.info(message)
-  handleJoinChatRequest(socket)
+  socket.on("join-chat-request", (message) => {
+    console.log("message from cleint >>");
+    console.info(message)
+    handleJoinChatRequest(socket)
 
-});
+  });
 
-socket.on("disconnect", (reason) => {
-  console.log("client disconnected with reason >>");
-  console.info(reason)
-});
+  socket.on("disconnect", (reason) => {
+    console.log("client disconnected with reason >>");
+    console.info(reason)
+  });
 
 });
 
 const handleJoinChatRequest = (socket) => {
-setTimeout(() => {
-  socket.emit("joined-chat", "Welcome to the Chat")
-}, 2000);
+  // mimc web request 
+  setTimeout(() => {
+    console.log("sending message to client >>");
+    console.log("joined-chat", "Welcome to the Chat");
+    socket.emit("joined-chat", "Welcome to the Chat")
+  }, 2000);
 }
 
 http.listen(port, () => {
-console.log("server is listening on " + port)
+  console.log("server is listening on " + port)
 });
