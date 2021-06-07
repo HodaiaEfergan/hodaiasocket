@@ -16,6 +16,8 @@ console.info("new client is connected!")
 socket.emit("welcome", "Welcome to the socket")
 
 socket.on("join-chat-request", (message) => {
+  console.log("sending message to client >>");
+    console.log("joined-chat", "Welcome to the Chat");
   console.log("message from cleint >>");
   console.info(message)
   handleJoinChatRequest(socket)
